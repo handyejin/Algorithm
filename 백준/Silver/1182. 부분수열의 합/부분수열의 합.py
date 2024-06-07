@@ -1,29 +1,26 @@
 import sys
 
+sys.setrecursionlimit(10 ** 6)
 
-def backtracking(depth, start):
+
+def backtracking(depth, s, cnt):
     global count
 
-    if depth == m:
-        if sum(answer) == S:
+    if depth == n:
+        if cnt > 0 and s == S:
             count += 1
+        return
 
-    for i in range(start, n):
-        if not visited[i]:
-            visited[i] = True
-            answer.append(arr[i])
-            backtracking(depth + 1, i)
-            visited[i] = False
-            del answer[-1]
+    # 포함할 경우
+    backtracking(depth + 1, s + arr[depth], cnt+1)
+
+    # 포함하지 않을 경우
+    backtracking(depth + 1, s, cnt)
 
 
 n, S = map(int, sys.stdin.readline().strip().split())
 arr = list(map(int, sys.stdin.readline().strip().split()))
-answer = list()
 count = 0
-visited = [False] * n
 
-for m in range(1, n+1):
-    backtracking(0, 0)
-
+backtracking(0, 0, 0)
 print(count)
