@@ -6,6 +6,7 @@ def dfs(depth):
         anw = ''.join(str(x) for x in result)
         if anw not in result_set:
             result_set.add(anw)
+        return
 
     for i in range(n):
         if not visited[i]:
