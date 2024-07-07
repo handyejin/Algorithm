@@ -1,6 +1,6 @@
 import sys
 import math
-sys.setrecursionlimit(10**6)
+# sys.setrecursionlimit(10**6)
 
 
 def is_unique_prime(num):
