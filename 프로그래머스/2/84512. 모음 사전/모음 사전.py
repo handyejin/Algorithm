@@ -1,24 +1,26 @@
 def dfs(depth, word):
-    global answer, result, count
-    if word == result:
-        answer = count
-        return
+    global result, answer, cnt
     
+    if ''.join(result) == word:
+        answer = cnt
+        return
+
     if depth == 5:
         return
     
+    for w in ('A', 'E', 'I', 'O', 'U'):
+        result.append(w)
+        cnt += 1
+        dfs(depth+1, word)
+        del result[-1]
+
         
-    for s in ['A', 'E', 'I', 'O', 'U']:
-        result += s
-        count += 1
-        dfs(depth +1, word)
-        result = result[0:-1]
         
 
 def solution(word):
-    global result, answer, count
+    global result, answer, cnt
+    result = []
     answer = 0
-    result = ''
-    count = 0
+    cnt = 0
     dfs(0, word)
     return answer
