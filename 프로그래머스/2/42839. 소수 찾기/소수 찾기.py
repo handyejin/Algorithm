@@ -11,7 +11,6 @@ def dfs(depth, numbers, s):
             num = int(s)
             is_prime = True
             if num not in result_set:
-                # print(num)
                 result_set.add(num)
                 if num in (0, 1):
                     is_prime = False
