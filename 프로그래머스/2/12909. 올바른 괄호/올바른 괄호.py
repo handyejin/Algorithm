@@ -1,17 +1,18 @@
 def solution(s):
     answer = True
-    arr = []
+    st = []
     
     for x in s:
         if x == "(":
-            arr.append(x)
+            st.append(x)
         else:
-            if not arr:
+            if st:
+                st.pop()
+            else:
                 answer = False
-                break
-            else:     
-                arr.pop()
-    if len(arr):
+    if st:
         answer = False
+    
+
 
     return answer
