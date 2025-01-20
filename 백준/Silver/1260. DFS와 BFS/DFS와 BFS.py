@@ -1,38 +1,41 @@
 import sys
 
+n, m, v = map(int, sys.stdin.readline().strip().split())
+g = [[] for _ in range(n+1)]
+visited = [False] * (n+1)
+
 def DFS(v):
     print(v, end=' ')
-    global visited
     visited[v] = True
-
-    for next in range(1, n + 1):
-        if not visited[next] and graph[v][next]:
-            DFS(next)
+    for i in g[v]:
+        if not visited[i]:
+            DFS(i)
 
 def BFS(v):
     q = [v]
     visited[v] = True
-
     while q:
-        cur = q.pop(0)
-        print(cur, end=' ')
-        for idx in range(1, n+1):
-            if not visited[idx] and graph[cur][idx]:
-                visited[idx] = True
-                q.append(idx)
+        now = q.pop(0)
+        print(now, end=' ')
+        for i in g[now]:
+            if not visited[i]:
+                visited[i] = True
+                q.append(i)
 
-n, m, v = map(int, sys.stdin.readline().strip().split())
 
-graph = [[False] * (n + 1) for _ in range(n + 1)]
-visited = [False] * (n + 1)
+
 
 for _ in range(m):
     a, b = map(int, sys.stdin.readline().strip().split())
-    graph[a][b] = True
-    graph[b][a] = True
+    g[a].append(b)
+    g[b].append(a)
+
+for l in g:
+    l.sort()
+
+result = []
 DFS(v)
 
+visited = [False] * (n+1)
 print()
-visited = [False] * (n + 1)
-
 BFS(v)
