@@ -5,15 +5,15 @@ def solution(n, times):
     
     while start <= end:
         mid = (start + end) // 2
-        print(start, mid, end)
-        tmp = 0
-        for t in times:
-            tmp += mid // t
         
-        if tmp >= n:
-            end = mid - 1
+        
+        cnt = 0
+        for t in times:
+            cnt += mid // t
+        if cnt >= n:
             answer = mid
+            end = mid -1
         else:
             start = mid + 1
-            
+    
     return answer
